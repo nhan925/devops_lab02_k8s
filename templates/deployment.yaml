@@ -1,0 +1,32 @@
+{{- range .Values.services }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .name }}-deployment
+  labels:
+    app: {{ .name }}
+  namespace: {{ $.Values.namespace }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: {{ .name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .name }}
+    spec:
+      containers:
+        - name: {{ .name }}
+          image: "{{ .dockerRepository | default $Values.docker.repository }}/{{ .image.name }}:{{ .image.tag | default 'latest' }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .ports.targetPort | default 0 }}
+          {{ - if .env }}
+          env:
+            {{- range $key, $value := .env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          {{- end }}
+{{- end }}

@@ -1,0 +1,65 @@
+namespace: default
+
+docker:
+  repository: nhan925
+
+services:
+  - name: config-server
+    ports:
+      port: 8888
+      targetPort: 8888
+    image:
+      name: spring-petclinic-config-server
+  - name: discovery-server
+    ports:
+      port: 8761
+      targetPort: 8761
+    image:
+      name: spring-petclinic-discovery-server
+  - name: admin-server
+    ports:
+      port: 9090
+      targetPort: 9090
+    image:
+      name: spring-petclinic-admin-server
+  - name: customers-service
+    ports:
+      port: 8081
+      targetPort: 8081
+    image:
+      name: spring-petclinic-customers-service
+  - name: visits-service
+    ports:
+      port: 8082
+      targetPort: 8082
+    image:
+      name: spring-petclinic-visits-service
+  - name: vets-service
+    ports:
+      port: 8083
+      targetPort: 8083
+    image:
+      name: spring-petclinic-vets-service
+  - name: genai-service
+    ports:
+      port: 8084
+      targetPort: 8084
+    image:
+      name: spring-petclinic-genai-service
+  - name: api-gateway
+    type: NodePort
+    ports:
+      port: 8080
+      targetPort: 8080
+      nodePort: 30080
+    image:
+      name: spring-petclinic-api-gateway
+  - name: tracing-server
+    dockerRepository: openzipkin
+    ports:
+      port: 9411
+      targetPort: 9411
+    image:
+      name: zipkin
+    env:
+      - JAVA_OPTS: "-XX:UseSVE=0"    
