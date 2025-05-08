@@ -15,6 +15,6 @@ spec:
       port: {{ .ports.port }}         # Exposed port inside the cluster
       targetPort: {{ .ports.targetPort | default 0 }}   # Container port
       {{- if eq .Values.service.type "NodePort" }}
-      nodePort: {{ ports.nodePort }}  # Only define nodePort if the service type is NodePort
+      nodePort: {{ .ports.nodePort }}  # Only define nodePort if the service type is NodePort
       {{- end }}
 {{- end }}
