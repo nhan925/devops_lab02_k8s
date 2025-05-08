@@ -18,11 +18,11 @@ spec:
     spec:
       containers:
         - name: {{ .name }}
-          image: "{{ .dockerRepository | default $Values.docker.repository }}/{{ .image.name }}:{{ .image.tag | default 'latest' }}"
+          image: "{{ .dockerRepository | default $.Values.docker.repository }}/{{ .image.name }}:{{ .image.tag | default 'latest' }}"
           imagePullPolicy: "{{ $.Values.imagePullPolicy | default 'Always'}}"
           ports:
             - containerPort: {{ .ports.targetPort | default 0 }}
-          {{ - if .env }}
+          {{- if .env }}
           env:
             {{- range $key, $value := .env }}
             - name: {{ $key }}
