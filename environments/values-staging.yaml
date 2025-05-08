@@ -1,27 +1,29 @@
 namespace: staging
 
+imageTag: &tag v1.0.0
+
 services:
   - name: spring-petclinic-config-server
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-discovery-server
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-admin-server
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-customers-service
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-visits-service
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-vets-service
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-genai-service
     image:
-      tag: 1.0.0
+      tag: *tag
   - name: spring-petclinic-api-gateway
     image:
-      tag: 1.0.0
+      tag: *tag
