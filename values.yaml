@@ -51,7 +51,6 @@ services:
     ports:
       port: 8080
       targetPort: 8080
-      nodePort: 30080
     image:
       name: spring-petclinic-api-gateway
   - name: tracing-server
