@@ -28,4 +28,14 @@ spec:
                 name: {{ .Values.ingress.adminServiceName }}
                 port:
                   number: {{ .Values.ingress.adminServicePort }}
+    - host: eureka.{{ .Values.namespace }}-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.ingress.eurekaServiceName }}
+                port:
+                  number: {{ .Values.ingress.eurekaServicePort }}
           

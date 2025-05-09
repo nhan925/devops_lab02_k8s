@@ -10,6 +10,8 @@ ingress:
   userServicePort: 8080
   adminServiceName: admin-server
   adminServicePort: 9090
+  eurekaServiceName: discovery-server
+  eurekaServicePort: 8761
 
 configServerEnv: &configServerEnv
   name: CONFIG_SERVER_URL
