@@ -8,7 +8,7 @@ metadata:
   namespace: {{ $.Values.namespace }}
   {{- if eq $.Values.namespace "dev"}}
   annotations:
-    chartVersion: {{ .Chart.Version }}
+    chartVersion: {{ $.Chart.Version }}
   {{- end }}
 spec:
   replicas: 2
