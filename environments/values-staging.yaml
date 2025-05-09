@@ -4,29 +4,34 @@ imagePullPolicy: IfNotPresent
 imageTag: &tag v1.0.0
 
 services:
-  - name: spring-petclinic-config-server
+  config-server:
     image:
       tag: *tag
-  - name: spring-petclinic-discovery-server
+
+  discovery-server:
     image:
       tag: *tag
-  - name: spring-petclinic-admin-server
+
+  admin-server:
     image:
       tag: *tag
-  - name: spring-petclinic-customers-service
+
+  customers-service:
     image:
       tag: *tag
-  - name: spring-petclinic-visits-service
+
+  visits-service:
     image:
       tag: *tag
-  - name: spring-petclinic-vets-service
+
+  vets-service:
     image:
       tag: *tag
-  - name: spring-petclinic-genai-service
+
+  genai-service:
     image:
       tag: *tag
-  - name: spring-petclinic-api-gateway
+
+  api-gateway:
     image:
       tag: *tag
-    ports:
-      nodePort: 30081

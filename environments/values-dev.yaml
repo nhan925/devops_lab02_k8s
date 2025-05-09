@@ -1,7 +1,2 @@
 namespace: dev
 imagePullPolicy: Always
-
-services:
-  - name: api-gateway
-    ports:
-      nodePort: 30080
