@@ -13,7 +13,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml                   # Default values
-        - environments/values-dev.yaml  # Dev-specific overrides
+        - environments/values-staging.yaml  # Dev-specific overrides
 
   destination:
     server: 'https://kubernetes.default.svc' # Kubernetes cluster API server
