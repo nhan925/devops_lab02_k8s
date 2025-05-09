@@ -5,6 +5,8 @@ metadata:
   namespace: {{ .Values.namespace }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
+    nginx.ingress.kubernetes.io/enable-underscores-in-headers: "true"
 spec:
   ingressClassName: nginx
   rules:
