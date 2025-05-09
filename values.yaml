@@ -9,6 +9,10 @@ ingress:
   serviceName: api-gateway
   servicePort: 8080
 
+configServerEnv: &configServerEnv
+  name: CONFIG_SERVER_URL
+  value: http://config-server:8888
+
 services:
   config-server:
     ports:
@@ -23,6 +27,8 @@ services:
       targetPort: 8761
     image:
       name: spring-petclinic-discovery-server
+    env: 
+      - *configServerEnv
 
   admin-server:
     ports:
@@ -30,6 +36,8 @@ services:
       targetPort: 9090
     image:
       name: spring-petclinic-admin-server
+    env: 
+      - *configServerEnv
 
   customers-service:
     ports:
@@ -37,6 +45,8 @@ services:
       targetPort: 8081
     image:
       name: spring-petclinic-customers-service
+    env: 
+      - *configServerEnv
 
   visits-service:
     ports:
@@ -44,6 +54,8 @@ services:
       targetPort: 8082
     image:
       name: spring-petclinic-visits-service
+    env: 
+      - *configServerEnv
 
   vets-service:
     ports:
@@ -51,6 +63,8 @@ services:
       targetPort: 8083
     image:
       name: spring-petclinic-vets-service
+    env: 
+      - *configServerEnv
 
   genai-service:
     ports:
@@ -58,6 +72,8 @@ services:
       targetPort: 8084
     image:
       name: spring-petclinic-genai-service
+    env: 
+      - *configServerEnv
 
   api-gateway:
     ports:
@@ -65,6 +81,8 @@ services:
       targetPort: 8080
     image:
       name: spring-petclinic-api-gateway
+    env: 
+      - *configServerEnv
 
   tracing-server:
     dockerRepository: openzipkin
@@ -73,7 +91,8 @@ services:
       targetPort: 9411
     image:
       name: zipkin
-    env:
+    env: 
       - name: JAVA_OPTS
         value: "-XX:UseSVE=0"
+      - *configServerEnv
  

@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: 'https://github.com/MaThanhNhi/spring-petclinic-microservices.git' # Replace with your Git repository URL
+    repoURL: 'https://github.com/nhan925/devops_lab02_k8s.git' # Replace with your Git repository URL
     targetRevision: HEAD                # Replace with the branch or tag to deploy
     path: .        # Path to the Helm chart in the repository
     helm:
@@ -20,6 +20,8 @@ spec:
     namespace: dev                          # Namespace for the dev environment
 
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true
