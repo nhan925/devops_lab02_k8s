@@ -6,8 +6,10 @@ docker:
 ingress:
   name: spring-petclinic-ingress
   host: petclinic.cloud
-  serviceName: api-gateway
-  servicePort: 8080
+  userServiceName: api-gateway
+  userServicePort: 8080
+  adminServiceName: admin-server
+  adminServicePort: 9090
 
 configServerEnv: &configServerEnv
   name: CONFIG_SERVER_URL
