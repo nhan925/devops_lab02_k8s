@@ -6,7 +6,7 @@ metadata:
   labels:
     app: {{ $name }}
   namespace: {{ $.Values.namespace }}
-  {{- if $.Values.namespace eq "dev"}}
+  {{- if eq $.Values.namespace "dev"}}
   annotations:
     chartVersion: {{ .Chart.Version }}
   {{- end }}
