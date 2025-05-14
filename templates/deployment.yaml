@@ -19,9 +19,15 @@ spec:
     spec:
       {{- if $service.dependOn }}
       initContainers:
-        - name: wait-for-{{ $name }}
-          image: busybox
-          command: ['sh', '-c', 'until curl -sf http://{{ $service.dependOn.name }}:{{ $service.dependOn.port }}/actuator/health; do echo "waiting for {{ $service.dependOn.name }}..."; sleep 5; done']
+        - name: init-container-for-{{ $name }}
+          image: curlimages/curl:latest
+          command:
+            - sh
+            - -c
+            - >
+              until curl -sf http://{{ $service.dependOn.name }}:{{ $service.dependOn.port }}/actuator/health;
+              do echo "waiting for {{ $service.dependOn.name }}..."; sleep 5;
+              done
       {{- end }}
       containers:
         - name: {{ $name }}
@@ -42,7 +48,7 @@ spec:
               port: {{ $service.ports.targetPort | default 0 }}
             initialDelaySeconds: {{ $service.readinessProbe.initialDelaySeconds | default 30 }}
             periodSeconds: {{ $service.readinessProbe.periodSeconds | default 10 }}
-            failureThreshold: {{ $service.readinessProbe.failureThreshold | default 3 }}
+            failureThreshold: {{ $service.readinessProbe.failureThreshold | default 10 }}
             successThreshold: {{ $service.readinessProbe.successThreshold | default 1 }}
           {{- end }}
 ---
