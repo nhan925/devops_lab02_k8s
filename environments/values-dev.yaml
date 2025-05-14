@@ -4,32 +4,32 @@ imagePullPolicy: Always
 services:
   config-server:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   discovery-server:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   admin-server:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   customers-service:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   visits-service:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   vets-service:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   genai-service:
     image:
-      tag: 92390d9
+      tag: 3ec750f
 
   api-gateway:
     image:
-      tag: 92390d9
+      tag: 3ec750f
