@@ -21,7 +21,7 @@ spec:
       initContainers:
         - name: wait-for-{{ $name }}
           image: busybox
-          command: ['sh', '-c', "until nslookup {{ $service.dependOn }}.{{ $.Values.namespace }}.svc.cluster.local; do echo waiting for myservice; sleep 5; done"]
+          command: ['sh', '-c', 'until curl -sf http://{{ $service.dependOn.name }}:{{ $service.dependOn.port }}/actuator/health; do echo "waiting for {{ $service.dependOn.name }}..."; sleep 5; done']
       {{- end }}
       containers:
         - name: {{ $name }}
@@ -34,6 +34,16 @@ spec:
             {{- toYaml $service.env | nindent 12 }}
             - name: EUREKA_INSTANCE_HOSTNAME
               value: {{ $name }}
+          {{- end }}
+          {{- if $service.readinessProbe }}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ $service.ports.targetPort | default 0 }}
+            initialDelaySeconds: {{ $service.readinessProbe.initialDelaySeconds | default 30 }}
+            periodSeconds: {{ $service.readinessProbe.periodSeconds | default 10 }}
+            failureThreshold: {{ $service.readinessProbe.failureThreshold | default 3 }}
+            successThreshold: {{ $service.readinessProbe.successThreshold | default 1 }}
           {{- end }}
 ---
 {{- end }}

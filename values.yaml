@@ -17,6 +17,10 @@ configServerEnv: &configServerEnv
   name: CONFIG_SERVER_URL
   value: http://config-server:8888
 
+dependOnEureka: &dependOnEureka
+  name: discovery-server
+  port: 8761
+
 services:
   config-server:
     ports:
@@ -24,6 +28,8 @@ services:
       targetPort: 8888
     image:
       name: spring-petclinic-config-server
+    readinessProbe:
+      initialDelaySeconds: 30
 
   discovery-server:
     ports:
@@ -33,7 +39,11 @@ services:
       name: spring-petclinic-discovery-server
     env: 
       - *configServerEnv
-    dependOn: config-server
+    dependOn: 
+      name: config-server
+      port: 8888
+    readinessProbe:
+      initialDelaySeconds: 30
 
   admin-server:
     ports:
@@ -43,7 +53,7 @@ services:
       name: spring-petclinic-admin-server
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
 
   customers-service:
     ports:
@@ -53,7 +63,7 @@ services:
       name: spring-petclinic-customers-service
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
 
   visits-service:
     ports:
@@ -63,7 +73,7 @@ services:
       name: spring-petclinic-visits-service
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
 
   vets-service:
     ports:
@@ -73,7 +83,7 @@ services:
       name: spring-petclinic-vets-service
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
 
   genai-service:
     ports:
@@ -83,7 +93,7 @@ services:
       name: spring-petclinic-genai-service
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
 
   api-gateway:
     ports:
@@ -93,7 +103,8 @@ services:
       name: spring-petclinic-api-gateway
     env: 
       - *configServerEnv
-    dependOn: discovery-server
+    dependOn: *dependOnEureka
+
 
   tracing-server:
     dockerRepository: openzipkin
@@ -104,5 +115,4 @@ services:
       name: zipkin
     env: 
       - *configServerEnv
-    dependOn: discovery-server
  
