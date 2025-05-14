@@ -21,7 +21,7 @@ spec:
       initContainers:
         - name: wait-for-{{ $name }}
           image: busybox
-          command: ['sh', '-c', "until nslookup {{ $service.dependOn }}.{{ $$.Values.namespace }}.svc.cluster.local; do echo waiting for myservice; sleep 5; done"]
+          command: ['sh', '-c', "until nslookup {{ $service.dependOn }}.{{ $.Values.namespace }}.svc.cluster.local; do echo waiting for myservice; sleep 5; done"]
       {{- end }}
       containers:
         - name: {{ $name }}
