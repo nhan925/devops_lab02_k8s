@@ -15,10 +15,6 @@ spec:
     metadata:
       labels:
         app: {{ $name }}
-      {{- if eq $.Values.namespace "dev"}}
-      annotations:
-        chartVersion: {{ $.Chart.Version }}
-      {{- end }}
     spec:
       containers:
         - name: {{ $name }}
