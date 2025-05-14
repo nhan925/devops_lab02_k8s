@@ -1,2 +1,35 @@
 namespace: dev
 imagePullPolicy: Always
+
+services:
+  config-server:
+    image:
+      tag: 2bf64e2
+
+  discovery-server:
+    image:
+      tag: 2bf64e2
+
+  admin-server:
+    image:
+      tag: 2bf64e2
+
+  customers-service:
+    image:
+      tag: 2bf64e2
+
+  visits-service:
+    image:
+      tag: 2bf64e2
+
+  vets-service:
+    image:
+      tag: 2bf64e2
+
+  genai-service:
+    image:
+      tag: 2bf64e2
+
+  api-gateway:
+    image:
+      tag: 2bf64e2
