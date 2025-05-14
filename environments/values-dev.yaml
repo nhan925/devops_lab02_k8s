@@ -4,32 +4,32 @@ imagePullPolicy: Always
 services:
   config-server:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   discovery-server:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   admin-server:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   customers-service:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   visits-service:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   vets-service:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   genai-service:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
 
   api-gateway:
     image:
-      tag: 2bf64e2
+      tag: 8bbdcf5
