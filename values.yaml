@@ -33,6 +33,7 @@ services:
       name: spring-petclinic-discovery-server
     env: 
       - *configServerEnv
+    dependOn: config-server
 
   admin-server:
     ports:
@@ -42,6 +43,7 @@ services:
       name: spring-petclinic-admin-server
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   customers-service:
     ports:
@@ -51,6 +53,7 @@ services:
       name: spring-petclinic-customers-service
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   visits-service:
     ports:
@@ -60,6 +63,7 @@ services:
       name: spring-petclinic-visits-service
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   vets-service:
     ports:
@@ -69,6 +73,7 @@ services:
       name: spring-petclinic-vets-service
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   genai-service:
     ports:
@@ -78,6 +83,7 @@ services:
       name: spring-petclinic-genai-service
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   api-gateway:
     ports:
@@ -87,6 +93,7 @@ services:
       name: spring-petclinic-api-gateway
     env: 
       - *configServerEnv
+    dependOn: discovery-server
 
   tracing-server:
     dockerRepository: openzipkin
@@ -97,4 +104,5 @@ services:
       name: zipkin
     env: 
       - *configServerEnv
+    dependOn: discovery-server
  

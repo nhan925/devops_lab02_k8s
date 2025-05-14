@@ -17,6 +17,12 @@ spec:
       labels:
         app: {{ $name }}
     spec:
+      {{- if $service.dependOn }}
+      initContainers:
+        - name: wait-for-{{ $name }}
+          image: busybox
+          command: ['sh', '-c', "until nslookup {{ $service.dependOn }}.{{ $$.Values.namespace }}.svc.cluster.local; do echo waiting for myservice; sleep 5; done"]
+      {{- end }}
       containers:
         - name: {{ $name }}
           image: "{{ $service.dockerRepository | default $.Values.docker.repository }}/{{ $service.image.name }}:{{ $service.image.tag | default "latest" }}"
