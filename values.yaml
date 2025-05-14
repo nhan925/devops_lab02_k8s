@@ -96,7 +96,5 @@ services:
     image:
       name: zipkin
     env: 
-      - name: JAVA_OPTS
-        value: "-XX:UseSVE=0"
       - *configServerEnv
  
