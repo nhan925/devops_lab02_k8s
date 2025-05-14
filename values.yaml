@@ -1,4 +1,5 @@
 namespace: default
+imagePullPolicy: IfNotPresent
 
 docker:
   repository: nhan925

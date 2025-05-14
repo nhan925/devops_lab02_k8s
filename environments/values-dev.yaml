@@ -1,5 +1,4 @@
 namespace: dev
-imagePullPolicy: Always
 
 services:
   config-server:

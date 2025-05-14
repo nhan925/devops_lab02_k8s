@@ -25,7 +25,7 @@ spec:
             - sh
             - -c
             - >
-              until curl -I http://{{ $service.dependOn.name }}:{{ $service.dependOn.port }}/actuator/health;
+              until curl -I http://{{ $service.dependOn.name }}:{{ $service.dependOn.port }};
               do echo "waiting for {{ $service.dependOn.name }}..."; sleep 5;
               done
       {{- end }}
@@ -41,8 +41,5 @@ spec:
             - name: EUREKA_INSTANCE_HOSTNAME
               value: {{ $name }}
           {{- end }}
-          resources:
-            limits:
-              memory: 512Mi
 ---
 {{- end }}
