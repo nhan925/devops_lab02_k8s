@@ -31,4 +31,4 @@ services:
 
   api-gateway:
     image:
-      tag: 3ec750f
+      tag: b897672
