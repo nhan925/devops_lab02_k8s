@@ -12,6 +12,8 @@ spec:
     helm:
       values: |
         controller:
+          config:
+            use-forwarded-headers: "true"
           service:
             type: NodePort
             nodePorts:
