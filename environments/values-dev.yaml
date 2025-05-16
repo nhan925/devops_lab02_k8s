@@ -11,7 +11,7 @@ services:
 
   admin-server:
     image:
-      tag: 3ec750f
+      tag: b50614d
 
   customers-service:
     image:
