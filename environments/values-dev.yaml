@@ -31,4 +31,4 @@ services:
 
   api-gateway:
     image:
-      tag: c008b11
+      tag: 56ff5e8
