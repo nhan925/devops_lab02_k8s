@@ -3,32 +3,32 @@ namespace: dev
 services:
   config-server:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   discovery-server:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   admin-server:
     image:
-      tag: b50614d
+      tag: c008b11
 
   customers-service:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   visits-service:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   vets-service:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   genai-service:
     image:
-      tag: 3ec750f
+      tag: c008b11
 
   api-gateway:
     image:
-      tag: b897672
+      tag: c008b11
