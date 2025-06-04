@@ -13,6 +13,8 @@ ingress:
   adminServicePort: 9090
   eurekaServiceName: discovery-server
   eurekaServicePort: 8761
+  grafanaServiceName: grafana-server
+  grafanaServicePort: 3000
 
 configServerEnv: &configServerEnv
   name: CONFIG_SERVER_URL
@@ -102,7 +104,6 @@ services:
       - *configServerEnv
     dependOn: *dependOnEureka
 
-
   tracing-server:
     dockerRepository: openzipkin
     ports:
@@ -110,6 +111,25 @@ services:
       targetPort: 9411
     image:
       name: zipkin
-    env: 
-      - *configServerEnv
+
+  grafana-server:
+    ports:
+      port: 3000
+      targetPort: 3000
+    image:
+      name: pet-clinic-grafana
+
+  prometheus-server:
+    ports:
+      port: 9091
+      targetPort: 9090
+    image:
+      name: pet-clinic-prometheus
+
+  loki-server:
+    ports:
+      port: 3100
+      targetPort: 3100
+    image:
+      name: pet-clinic-loki
  

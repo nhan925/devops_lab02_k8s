@@ -38,4 +38,15 @@ spec:
                 name: {{ .Values.ingress.eurekaServiceName }}
                 port:
                   number: {{ .Values.ingress.eurekaServicePort }}
+
+    - host: grafana.{{ .Values.namespace }}-{{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Values.ingress.grafanaServiceName }}
+                port:
+                  number: {{ .Values.ingress.grafanaServicePort }}
           
